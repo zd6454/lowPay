@@ -1,6 +1,8 @@
 package com.cof.server.bean;
 
-//对应数据库中的id、name、age、gender。
+/**
+ * @author 64540
+ */ //对应数据库中的id、name、age、gender。
 public class User {
     private Long id;
     private String name;
