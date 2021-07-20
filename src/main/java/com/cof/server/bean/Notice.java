@@ -1,5 +1,10 @@
 package com.cof.server.bean;
 
+/**
+ * 用户求购信息
+ *
+ * @author huang
+ */
 public class Notice {
     private Integer id;
     private String createAt;

@@ -1,5 +1,10 @@
 package com.cof.server.bean;
 
+/**
+ * 商品.
+ *
+ * @author huang
+ */
 public class Goods {
     private Integer id;
 
@@ -86,7 +91,6 @@ public class Goods {
     public void setEndTime(String endTime) {
         this.endTime = endTime == null ? null : endTime.trim();
     }
-
 
 
     public Integer getStatus() {

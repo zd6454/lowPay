@@ -1,5 +1,10 @@
 package com.cof.server.bean;
 
+/**
+ * 回复.
+ *
+ * @author huang
+ */
 public class Reply {
     private Integer id;
 

@@ -1,5 +1,10 @@
 package com.cof.server.bean;
 
+/**
+ * 系统的订单数据.
+ *
+ * @author huang
+ */
 public class Orders {
     private Integer id;
 
@@ -26,7 +31,6 @@ public class Orders {
     public void setId(Integer id) {
         this.id = id;
     }
-
 
 
     public Integer getUserId() {

@@ -1,7 +1,9 @@
 package com.cof.server.bean;
 
 /**
- * @author 64540
+ * 用户数据表.
+ *
+ * @author huang
  */
 public class User {
     private Integer id;

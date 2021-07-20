@@ -1,5 +1,10 @@
 package com.cof.server.bean;
 
+/**
+ * comments.
+ *
+ * @author huang
+ */
 public class Comments {
     private Integer id;
     private User user;

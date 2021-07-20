@@ -1,5 +1,10 @@
 package com.cof.server.bean;
 
+/**
+ * 关注.
+ *
+ * @author huang
+ */
 public class Focus {
 
     private Integer id;
