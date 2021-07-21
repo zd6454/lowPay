@@ -35,6 +35,4 @@ public interface UserService {
     public List<User> getPageUserByUser(String phone, String username, String qq, int pageNum, int pageSize);
 
     public List<User> getUserOrderByDate(int size);
-
-    public List<User> getUserList();
 }

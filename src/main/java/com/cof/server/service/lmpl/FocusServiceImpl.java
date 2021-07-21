@@ -1,25 +1,42 @@
 package com.cof.server.service.lmpl;
 
 import com.cof.server.bean.Focus;
+import com.cof.server.dao.FocusMapper;
 import com.cof.server.service.FocusService;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
-@Service
+@Service("focusService")
 public class FocusServiceImpl implements FocusService {
-    @Override
+    @Resource
+    private FocusMapper focusMapper;
+
+    /**
+     * 根据用户id获取我的关注
+     */
     public List<Focus> getFocusByUserId(Integer user_id) {
-        return null;
+        List<Focus> focusList = focusMapper.getFocusByUserId(user_id);
+
+        return focusList;
     }
 
-    @Override
+    /*
+     * 根据用户id和关注id删除
+     */
+
     public void deleteFocusByUserIdAndGoodsId(Integer goods_id, Integer user_id) {
 
-    }
+        focusMapper.deleteFocusByUserIdAndGoodsId(goods_id, user_id);
 
-    @Override
+    }
+    /*
+     * 添加我的关注
+     */
     public void addFocusByUserIdAndId(Integer goods_id, Integer user_id) {
+
+        focusMapper.addFocusByUserIdAndGoodsId(goods_id,user_id);
 
     }
 }
