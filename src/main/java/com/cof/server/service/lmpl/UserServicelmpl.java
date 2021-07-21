@@ -17,11 +17,69 @@ public class UserServicelmpl implements UserService {
     @Autowired
     UserMapper userMapper;
 
+
     @Override
-    public List<User> query() {
-        //调用UserMapper中的query方法，返回一个List，类型为User，为了代码简洁，就不需要定义中间变量。
-        //如：List<User> user = userMapper.query();
-        //    return user;
-        return userMapper.query();
+    public void addUser(User user) {
+
+    }
+
+    @Override
+    public User getUserByPhone(String phone) {
+        return null;
+    }
+
+    @Override
+    public void updateUserName(User user) {
+
+    }
+
+    @Override
+    public int updateGoodsNum(Integer id, Integer goodsNum) {
+        return 0;
+    }
+
+    @Override
+    public User selectByPrimaryKey(Integer id) {
+        return null;
+    }
+
+    @Override
+    public List<User> getPageUser(int pageNum, int pageSize) {
+        return null;
+    }
+
+    @Override
+    public int getUserNum() {
+        return 0;
+    }
+
+    @Override
+    public int getUserNum(String username) {
+        return 0;
+    }
+
+    @Override
+    public List<User> getPageUser(int pageNum, int pageSize, String username) {
+        return null;
+    }
+
+    @Override
+    public User getUserById(int id) {
+        return null;
+    }
+
+    @Override
+    public void deleteUserById(String idArr) {
+
+    }
+
+    @Override
+    public List<User> getPageUserByUser(String phone, String username, String qq, int pageNum, int pageSize) {
+        return null;
+    }
+
+    @Override
+    public List<User> getUserOrderByDate(int size) {
+        return null;
     }
 }
