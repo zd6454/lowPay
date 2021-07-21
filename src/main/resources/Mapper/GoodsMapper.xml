@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.ldu.dao.GoodsMapper">
+<mapper namespace="com.cof.server.dao.GoodsMapper">
 
 
-    <resultMap id="CommentExtend" type="com.ldu.pojo.CommentExtend">
+    <resultMap id="CommentExtend" type="com.cof.server.bean.CommentExtend">
         <id column="goodsId" property="id" jdbcType="INTEGER"/>
         <result column="catelog_id" property="catelogId" jdbcType="INTEGER"/>
         <result column="user_id" property="userId" jdbcType="INTEGER"/>
