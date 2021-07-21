@@ -1,27 +1,20 @@
 package com.cof.server.bean;
 
 /**
- * @author 64540
+ * 用户数据表.
+ *
+ * @author huang
  */
 public class User {
     private Integer id;
-
     private String phone;
-
     private String username;
-
     private String password;
-
     private String qq;
-
     private String createAt;
-
     private Integer goodsNum;
-
     private Integer power;
-
     private String lastLogin;
-
     private Byte status;
 
     public Integer getId() {

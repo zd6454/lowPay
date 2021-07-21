@@ -2,9 +2,11 @@ package com.cof.server.service.lmpl;
 
 import com.cof.server.bean.Image;
 import com.cof.server.service.ImageService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ImageServiceImpl implements ImageService {
     @Override
     public int insert(Image record) {

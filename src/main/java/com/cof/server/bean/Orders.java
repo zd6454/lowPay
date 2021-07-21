@@ -1,22 +1,19 @@
 package com.cof.server.bean;
 
+/**
+ * 系统的订单数据.
+ *
+ * @author huang
+ */
 public class Orders {
     private Integer id;
-
     private Integer userId;
-
     private Goods goods;
-
     private Integer goodsId;
-
     private Long orderNum;
-
     private Float orderPrice;
-
     private Integer orderState;
-
     private String orderInformation;
-
     private String orderDate;
 
     public Integer getId() {
@@ -26,7 +23,6 @@ public class Orders {
     public void setId(Integer id) {
         this.id = id;
     }
-
 
 
     public Integer getUserId() {

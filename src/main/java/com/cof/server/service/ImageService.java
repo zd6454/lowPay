@@ -6,8 +6,10 @@ import java.util.List;
 
 public interface ImageService {
     int insert(Image record);
+
     /**
      * 通过商品id获取该商品的图片
+     *
      * @param goodsId
      * @return
      */
@@ -15,6 +17,7 @@ public interface ImageService {
 
     /**
      * 通过商品Id删除商品
+     *
      * @param goodsId
      * @return
      */

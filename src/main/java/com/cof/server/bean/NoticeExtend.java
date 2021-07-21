@@ -1,6 +1,12 @@
 package com.cof.server.bean;
 
-public class NoticeExtend extends User{
+import java.util.List;
+
+/**
+ * 商品拓展，联合查询.
+ * author huang
+ */
+public class NoticeExtend extends User {
     private List<Notice> notice;
 
     public List<Notice> getNotice() {

@@ -1,13 +1,15 @@
 package com.cof.server.bean;
 
+/**
+ * 用户求购信息
+ *
+ * @author huang
+ */
 public class Notice {
     private Integer id;
     private String createAt;
-
     private Byte status;
-
     private String context;
-
     private User user;
 
     public Integer getId() {

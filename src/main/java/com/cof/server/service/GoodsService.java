@@ -9,13 +9,15 @@ import java.util.List;
 public interface GoodsService {
     /**
      * 发布商品
+     *
      * @param goods
      * @param duration 允许上架时长
      */
-    public int addGood(Goods goods , Integer duration);
+    public int addGood(Goods goods, Integer duration);
 
     /**
      * 通过主键获取商品
+     *
      * @param goodsId
      * @return
      */
@@ -25,12 +27,14 @@ public interface GoodsService {
 
     /**
      * 更新商品信息
+     *
      * @param goods
      */
-    public void updateGoodsByPrimaryKeyWithBLOBs(int goodsId ,Goods goods);
+    public void updateGoodsByPrimaryKeyWithBLOBs(int goodsId, Goods goods);
 
     /**
      * 通过主键删除商品
+     *
      * @param id
      */
     public void deleteGoodsByPrimaryKey(Integer id);//更新
@@ -47,30 +51,34 @@ public interface GoodsService {
     /**
      * 通过最新发布分类获取商品信息
      */
-    public List<Goods> getGoodsByStr(Integer limit,String name,String describle);
+    public List<Goods> getGoodsByStr(Integer limit, String name, String describle);
 
     /**
      * 通过商品分类获取商品信息
      */
-    public List<Goods> getGoodsByCatelog(Integer id,String name,String describle);
+    public List<Goods> getGoodsByCatelog(Integer id, String name, String describle);
 
 
     /**
      * 获取 最新发布 物品，根据时间排序,获取前limit个结果
+     *
      * @param limit
      * @return
      */
     public List<Goods> getGoodsOrderByDate(Integer limit);
+
     /**
      * 根据分类id,并进行时间排序,获取前limit个结果
+     *
      * @param catelogId
      * @param limit
      * @return
      */
-    public List<Goods> getGoodsByCatelogOrderByDate(Integer catelogId,Integer limit);
+    public List<Goods> getGoodsByCatelogOrderByDate(Integer catelogId, Integer limit);
 
     /**
      * 根据用户的id，查询出该用户的所有闲置
+     *
      * @param user_id
      * @return
      */
@@ -78,12 +86,14 @@ public interface GoodsService {
 
     /**
      * 提交订单时，根据goodsId修改商品状态
+     *
      * @param goods
      */
     public void updateGoodsByGoodsId(Goods goods);
 
     /**
      * 获取商品数
+     *
      * @return
      */
     public int getGoodsNum();
@@ -92,9 +102,10 @@ public interface GoodsService {
 
     /**
      * 模糊查询
+     *
      * @param id
      * @param name
-     * @param form
+     * @param status
      * @param pageNum
      * @param pageSize
      * @return
@@ -106,7 +117,8 @@ public interface GoodsService {
 
     /**
      * 新增评论
-     * @param id
+     *
+     * @param status
      */
-    public void addComments(Comments comments);
+    public void addComments(Comments status);
 }

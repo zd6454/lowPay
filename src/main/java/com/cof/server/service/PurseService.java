@@ -13,6 +13,7 @@ public interface PurseService {
 
     /**
      * 根据用户id获取钱包信息
+     *
      * @param user_id
      * @return
      */
@@ -20,6 +21,7 @@ public interface PurseService {
 
     /**
      * 充值或提现
+     *
      * @param purse
      */
     public void updatePurse(Purse purse);
@@ -28,7 +30,7 @@ public interface PurseService {
 
     public List<Purse> getPagePurse(int pageNum, int pageSize);
 
-    public List<Purse> getPagePurseByPurse(Integer userId,Integer state, int pageNum, int pageSize);
+    public List<Purse> getPagePurseByPurse(Integer userId, Integer state, int pageNum, int pageSize);
 
     public Purse getPurseById(int id);
 
@@ -36,5 +38,5 @@ public interface PurseService {
 
     public void updatePursePassById(Integer id, Purse purse);
 
-    public void updatePurseRefuseById(Integer id,Purse purse);
+    public void updatePurseRefuseById(Integer id, Purse purse);
 }

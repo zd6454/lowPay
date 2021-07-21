@@ -1,12 +1,14 @@
 package com.cof.server.bean;
 
+/**
+ * 分类.
+ *
+ * @author huang
+ */
 public class Catelog {
     private Integer id;
-
     private String name;
-
     private Integer number;
-
     private Byte status;
 
     public Integer getId() {

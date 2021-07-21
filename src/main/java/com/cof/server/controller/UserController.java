@@ -2,7 +2,12 @@ package com.cof.server.controller;
 
 import com.cof.server.bean.*;
 import com.cof.server.service.*;
+import com.cof.server.utils.DateUtil;
+import com.cof.server.utils.MD5;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -16,7 +21,7 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/User")
 public class UserController {
 
     @Resource
@@ -35,6 +40,14 @@ public class UserController {
     @Resource
     private NoticeService noticeService;
 
+    /**
+     * 测试数据库连接.
+     * @return 所有用户
+     */
+    @GetMapping("query")
+    public List<User> query(){
+        return userService.getUserList();
+    }
     /**
      * 用户注册
      *
@@ -62,17 +75,18 @@ public class UserController {
 
     /**
      * 注册验证账号
+     *
      * @param request
      * @return
      */
-    @RequestMapping(value = "/register",method = RequestMethod.POST)
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
     @ResponseBody
-    public String register(HttpServletRequest request){
-        String phone=request.getParameter("phone");
+    public String register(HttpServletRequest request) {
+        String phone = request.getParameter("phone");
         User user = userService.getUserByPhone(phone);
-        if(user==null) {
+        if (user == null) {
             return "{\"success\":true,\"flag\":false}";//用户存在，注册失败
-        }else {
+        } else {
             return "{\"success\":true,\"flag\":true}";//用户不存在，可以注册
         }
     }
@@ -107,6 +121,7 @@ public class UserController {
 
     /**
      * 验证登录
+     *
      * @param request
      * @param user
      * @param modelMap
@@ -120,7 +135,7 @@ public class UserController {
         if (cur_user != null) {
             String pwd = MD5.md5(user.getPassword());
             if (pwd.equals(cur_user.getPassword())) {
-                if(cur_user.getStatus()==1) {
+                if (cur_user.getStatus() == 1) {
                     request.getSession().setAttribute("cur_user", cur_user);
                     return new ModelAndView("redirect:" + url);
                 }
@@ -189,10 +204,10 @@ public class UserController {
         ModelAndView mv = new ModelAndView();
         User cur_user = (User) request.getSession().getAttribute("cur_user");
         Integer userId = cur_user.getId();
-        int size=5;
+        int size = 5;
         Purse myPurse = purseService.getPurseByUserId(userId);
-        List<User> users=userService.getUserOrderByDate(size);
-        List<Notice> notice=noticeService.getNoticeList();
+        List<User> users = userService.getUserOrderByDate(size);
+        List<Notice> notice = noticeService.getNoticeList();
         mv.addObject("notice", notice);
         mv.addObject("myPurse", myPurse);
         mv.addObject("users", users);
@@ -275,6 +290,7 @@ public class UserController {
 
     /**
      * 删除我的关注
+     *
      * @return
      */
     @RequestMapping(value = "/deleteFocus/{id}")
@@ -297,17 +313,17 @@ public class UserController {
         User cur_user = (User) request.getSession().getAttribute("cur_user");
         Integer user_id = cur_user.getId();
         //首先获取用户所有的关注列表
-        List<Focus> focus=focusService.getFocusByUserId(user_id);
+        List<Focus> focus = focusService.getFocusByUserId(user_id);
         //若关注列表为空，则直接添加关注
-        if(focus.isEmpty()) {
+        if (focus.isEmpty()) {
             focusService.addFocusByUserIdAndId(goods_id, user_id);
             return "redirect:/user/allFocus";
         }
         //遍历所有的关注列表
         for (Focus myfocus : focus) {
-            int goodsId=myfocus.getGoodsId();
+            int goodsId = myfocus.getGoodsId();
             //若该商品已经被关注，则直接返回
-            if(goodsId == goods_id.intValue()) {
+            if (goodsId == goods_id.intValue()) {
                 return "redirect:/user/allFocus";
             }
         }
@@ -352,19 +368,19 @@ public class UserController {
         return "redirect:/user/myPurse";
     }
 
-    @RequestMapping(value = "/insertSelective",method = RequestMethod.POST)
+    @RequestMapping(value = "/insertSelective", method = RequestMethod.POST)
     @ResponseBody
-    public String insertSelective(HttpServletRequest request){
-        String context=request.getParameter("context");
+    public String insertSelective(HttpServletRequest request) {
+        String context = request.getParameter("context");
         User cur_user = (User) request.getSession().getAttribute("cur_user");
-        Notice notice=new Notice();
+        Notice notice = new Notice();
         notice.setContext(context);
         Date dt = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         notice.setCreateAt(sdf.format(dt));
         notice.setStatus((byte) 0);
         notice.setUser(cur_user);
-        if(context==null||context=="") {
+        if (context == null || context == "") {
             return "{\"success\":false,\"msg\":\"发布失败，请输入内容!\"}";
         }
         try {

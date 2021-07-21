@@ -1,10 +1,13 @@
 package com.cof.server.bean;
 
+/**
+ * 图片.
+ *
+ * @author huang
+ */
 public class Image {
     private Integer id;
-
     private Integer goodsId;
-
     private String imgUrl;
 
     public Integer getId() {

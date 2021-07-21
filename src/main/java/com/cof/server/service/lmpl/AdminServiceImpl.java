@@ -2,7 +2,9 @@ package com.cof.server.service.lmpl;
 
 import com.cof.server.bean.Admin;
 import com.cof.server.service.AdminService;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AdminServiceImpl implements AdminService {
 
 

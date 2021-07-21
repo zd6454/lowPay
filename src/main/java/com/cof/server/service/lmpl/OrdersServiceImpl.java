@@ -2,9 +2,11 @@ package com.cof.server.service.lmpl;
 
 import com.cof.server.bean.Orders;
 import com.cof.server.service.OrdersService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class OrdersServiceImpl implements OrdersService {
     @Override
     public List<Orders> getOrdersByUserId(Integer user_id) {

@@ -1,4 +1,5 @@
 package com.cof.server.service.lmpl;
+
 import com.cof.server.bean.User;
 import com.cof.server.dao.UserMapper;
 import com.cof.server.service.UserService;
@@ -6,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -14,8 +16,8 @@ import java.util.List;
 @Service
 public class UserServicelmpl implements UserService {
 
-    @Autowired
-    UserMapper userMapper;
+    @Resource
+    private UserMapper userMapper;
 
 
     @Override
@@ -81,5 +83,10 @@ public class UserServicelmpl implements UserService {
     @Override
     public List<User> getUserOrderByDate(int size) {
         return null;
+    }
+
+    @Override
+    public List<User> getUserList() {
+        return userMapper.getUserList();
     }
 }

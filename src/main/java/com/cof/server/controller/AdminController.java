@@ -2,6 +2,10 @@ package com.cof.server.controller;
 
 import com.cof.server.bean.*;
 import com.cof.server.service.*;
+import com.cof.server.utils.GoodsGrid;
+import com.cof.server.utils.OrdersGrid;
+import com.cof.server.utils.PurseGrid;
+import com.cof.server.utils.UserGrid;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -85,18 +89,19 @@ public class AdminController {
         modelAndView.setViewName("admin/modify");
         return modelAndView;
     }
+
     /* 修改密码 */
     @RequestMapping(value = "/changePassword")
     @ResponseBody
-    public ModelAndView changePassword(HttpServletRequest request,Admin admin) {
-        String pwd=request.getParameter("password1");
+    public ModelAndView changePassword(HttpServletRequest request, Admin admin) {
+        String pwd = request.getParameter("password1");
         ModelAndView modelAndView = new ModelAndView();
         Admin admins = (Admin) request.getSession().getAttribute("admin");
 
-        if(admin.getPassword().equals(admins.getPassword())) {
+        if (admin.getPassword().equals(admins.getPassword())) {
             admins.setPassword(pwd);
             adminService.updateAdmin(admins);
-        }else {
+        } else {
             modelAndView.addObject("msg", "原密码有误，请重新输入！");
             modelAndView.setViewName("admin/modify");
             return modelAndView;
@@ -321,7 +326,7 @@ public class AdminController {
         Orders oldorders = ordersService.getOrdersById(id);
         orders.setGoodsId(oldorders.getGoodsId());
         orders.setUserId(oldorders.getUserId());
-        Goods goods=goodsService.getGoodsById(oldorders.getGoods().getId());
+        Goods goods = goodsService.getGoodsById(oldorders.getGoods().getId());
         if (oldorders.getOrderState() != orders.getOrderState()) {
             Float balance = orders.getOrderPrice();
             if (orders.getOrderState() == 3) {
@@ -389,7 +394,7 @@ public class AdminController {
     @RequestMapping(value = "/purseList")
     @ResponseBody
     public ModelAndView getPurseList(HttpServletRequest request) {
-        int pageNum=Integer.parseInt(request.getParameter("pageNum"));
+        int pageNum = Integer.parseInt(request.getParameter("pageNum"));
         ModelAndView modelAndView = new ModelAndView();
         int pageSize = 10;
         int total = purseService.getPurseNum();
@@ -413,8 +418,8 @@ public class AdminController {
         int pageSize = 10;
         int total = purseService.getPurseNum();
         Integer userId = purse.getUserId();
-        Integer state=purse.getState();
-        List<Purse> rows = purseService.getPagePurseByPurse(userId,state, pageNum, pageSize);
+        Integer state = purse.getState();
+        List<Purse> rows = purseService.getPagePurseByPurse(userId, state, pageNum, pageSize);
         PurseGrid purseGrid = new PurseGrid();
         Purse searchpurse = new Purse();
         searchpurse.setUserId(userId);
@@ -455,22 +460,22 @@ public class AdminController {
     @RequestMapping(value = "/updatePursePass", method = RequestMethod.POST)
     @ResponseBody
     public String updatePursePass(HttpServletRequest request, Purse purse) {
-        Float balance=purse.getBalance();
+        Float balance = purse.getBalance();
         purse.setState(2);
         try {
-            if(purse.getRecharge()!=null){//充值 充值金额=null 当前金额=当前金额+充值金额
-                Float recharge=purse.getRecharge();
-                Float balanceRecharge=balance+recharge;
+            if (purse.getRecharge() != null) {//充值 充值金额=null 当前金额=当前金额+充值金额
+                Float recharge = purse.getRecharge();
+                Float balanceRecharge = balance + recharge;
                 purse.setBalance(balanceRecharge);
-                purseService.updatePursePassById(purse.getId(),purse);
-            }if(purse.getWithdrawals()!=null) {//提现
-                Float withdrawals=purse.getWithdrawals();
-                Float balanceWithdrawals=balance-withdrawals;
-                purse.setBalance(balanceWithdrawals);
-                purseService.updatePurseRefuseById(purse.getId(),purse);
+                purseService.updatePursePassById(purse.getId(), purse);
             }
-        }
-        catch (Exception e) {
+            if (purse.getWithdrawals() != null) {//提现
+                Float withdrawals = purse.getWithdrawals();
+                Float balanceWithdrawals = balance - withdrawals;
+                purse.setBalance(balanceWithdrawals);
+                purseService.updatePurseRefuseById(purse.getId(), purse);
+            }
+        } catch (Exception e) {
             return "{\"success\":true,\"msg\":\"审核失败，请核对金额!\"}";
         }
         return "{\"success\":true,\"msg\":\"审核成功!\"}";
@@ -483,10 +488,9 @@ public class AdminController {
         purse.setState(1);
         try {
 
-            purseService.updatePurseRefuseById(purse.getId(),purse);
+            purseService.updatePurseRefuseById(purse.getId(), purse);
 
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return "{\"success\":true,\"msg\":\"审核失败!\"}";
         }
         return "{\"success\":true,\"msg\":\"审核成功!\"}";
@@ -495,9 +499,9 @@ public class AdminController {
     /* 用户查看审核结果 */
     @RequestMapping(value = "/updatePurseState", method = RequestMethod.GET)
     public void updatePurseState(HttpServletRequest request) {
-        Integer id=Integer.parseInt(request.getParameter("id"));
-        Purse purse= purseService.getPurseById(id);
+        Integer id = Integer.parseInt(request.getParameter("id"));
+        Purse purse = purseService.getPurseById(id);
         purse.setState(null);
-        this.purseService.updateByPrimaryKey(id,purse);//修改state为null
+        this.purseService.updateByPrimaryKey(id, purse);//修改state为null
     }
 }

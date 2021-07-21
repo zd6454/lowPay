@@ -1,16 +1,16 @@
 package com.cof.server.bean;
 
+/**
+ * 回复.
+ *
+ * @author huang
+ */
 public class Reply {
     private Integer id;
-
     private Integer userId;
-
     private Integer atuserId;
-
     private Integer commetId;
-
     private String createAt;
-
     private String content;
 
     public Integer getId() {
