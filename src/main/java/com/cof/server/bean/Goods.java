@@ -7,25 +7,15 @@ package com.cof.server.bean;
  */
 public class Goods {
     private Integer id;
-
     private Integer catelogId;
-
     private Integer userId;
-
     private String name;
-
     private Float price;
-
     private Float realPrice;
-
     private String startTime;
-
     private String endTime;
-
     private String polishTime;
-
     private Integer status;
-
     private String describle;
 
     public Integer getId() {

@@ -8,11 +8,8 @@ package com.cof.server.bean;
 public class Notice {
     private Integer id;
     private String createAt;
-
     private Byte status;
-
     private String context;
-
     private User user;
 
     public Integer getId() {

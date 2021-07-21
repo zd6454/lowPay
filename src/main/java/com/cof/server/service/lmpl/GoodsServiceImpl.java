@@ -4,9 +4,11 @@ import com.cof.server.bean.CommentExtend;
 import com.cof.server.bean.Comments;
 import com.cof.server.bean.Goods;
 import com.cof.server.service.GoodsService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class GoodsServiceImpl implements GoodsService {
     @Override
     public int addGood(Goods goods, Integer duration) {

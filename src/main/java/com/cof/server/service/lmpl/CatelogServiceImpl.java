@@ -2,9 +2,11 @@ package com.cof.server.service.lmpl;
 
 import com.cof.server.bean.Catelog;
 import com.cof.server.service.CatelogService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class CatelogServiceImpl implements CatelogService {
     @Override
     public List<Catelog> getAllCatelog() {

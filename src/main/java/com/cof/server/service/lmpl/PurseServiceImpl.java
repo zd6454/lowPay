@@ -2,9 +2,11 @@ package com.cof.server.service.lmpl;
 
 import com.cof.server.bean.Purse;
 import com.cof.server.service.PurseService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class PurseServiceImpl implements PurseService {
     @Override
     public void updatePurseByuserId(Integer userId, Float balance) {

@@ -6,11 +6,11 @@ package com.cof.server.bean;
  * @author huang
  */
 public class Admin {
-    private Integer id;//id
-    private String userName;//用户名
-    private Long phone;//账号
-    private String password;//密码
-    private String userRole;//角色
+    private Integer id;
+    private String userName;
+    private Long phone;
+    private String password;
+    private String userRole;
 
     public Integer getId() {
         return id;

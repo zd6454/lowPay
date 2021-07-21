@@ -6,11 +6,8 @@ package com.cof.server.bean;
  * @author huang
  */
 public class Focus {
-
     private Integer id;
-
     private Integer goodsId;
-
     private Integer userId;
 
     public Integer getId() {

@@ -2,6 +2,7 @@ package com.cof.server.controller;
 
 import com.cof.server.bean.*;
 import com.cof.server.service.*;
+import com.cof.server.utils.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -86,7 +87,7 @@ public class GoodsController {
     /**
      * 搜索商品
      *
-     * @param str          //ajax传值
+     * @param str //ajax传值
      * @return
      * @throws Exception
      */
@@ -110,10 +111,9 @@ public class GoodsController {
     }
 
     /**
-     * 查询该类商品
-     *
-     * @param id
-     *            要求该参数不为空
+     * 查询该商品.
+     * @param request
+     * @param str
      * @return
      * @throws Exception
      */
@@ -146,8 +146,7 @@ public class GoodsController {
     /**
      * 查询该类商品
      *
-     * @param id
-     *            要求该参数不为空
+     * @param id 要求该参数不为空
      * @return
      * @throws Exception
      */
@@ -188,11 +187,11 @@ public class GoodsController {
         Catelog catelog = catelogService.selectByPrimaryKey(goods.getCatelogId());
         GoodsExtend goodsExtend = new GoodsExtend();
         List<Image> imageList = imageService.getImagesByGoodsPrimaryKey(id);
-        CommentExtend CommentExtend=goodsService.selectCommentsByGoodsId(id);
+        CommentExtend CommentExtend = goodsService.selectCommentsByGoodsId(id);
         goodsExtend.setGoods(goods);
         goodsExtend.setImages(imageList);
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("CommentExtend",CommentExtend);
+        modelAndView.addObject("CommentExtend", CommentExtend);
         modelAndView.addObject("goodsExtend", goodsExtend);
         modelAndView.addObject("seller", seller);
         modelAndView.addObject("search", str);
@@ -204,14 +203,15 @@ public class GoodsController {
 
     /**
      * 发布评论
+     *
      * @return
      */
-    @RequestMapping(value = "/addComments",method= RequestMethod.POST)
-    public void deleteFocus(HttpServletRequest request,Comments comments) {
-        User cur_user = (User)request.getSession().getAttribute("cur_user");
+    @RequestMapping(value = "/addComments", method = RequestMethod.POST)
+    public void deleteFocus(HttpServletRequest request, Comments comments) {
+        User cur_user = (User) request.getSession().getAttribute("cur_user");
         comments.setUser(cur_user);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        Date createAt =new Date();
+        Date createAt = new Date();
         comments.setCreateAt(sdf.format(createAt));
         goodsService.addComments(comments);
 
@@ -224,7 +224,7 @@ public class GoodsController {
      * @throws Exception
      */
     @RequestMapping(value = "/editGoods/{id}")
-    public ModelAndView editGoods(HttpServletRequest request,@PathVariable("id") Integer id) throws Exception {
+    public ModelAndView editGoods(HttpServletRequest request, @PathVariable("id") Integer id) throws Exception {
         User cur_user = (User) request.getSession().getAttribute("cur_user");
         Goods goods = goodsService.getGoodsByPrimaryKey(id);
         List<Image> imageList = imageService.getImagesByGoodsPrimaryKey(id);
@@ -396,12 +396,12 @@ public class GoodsController {
         List<Image> imageList = imageService.getImagesByGoodsPrimaryKey(id);
         goodsExtend.setGoods(goods);
         goodsExtend.setImages(imageList);
-        User cur_user = (User)request.getSession().getAttribute("cur_user");
+        User cur_user = (User) request.getSession().getAttribute("cur_user");
         Integer userId = cur_user.getId();
-        Purse myPurse=purseService.getPurseByUserId(userId);
+        Purse myPurse = purseService.getPurseByUserId(userId);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("goodsExtend", goodsExtend);
-        modelAndView.addObject("myPurse",myPurse);
+        modelAndView.addObject("myPurse", myPurse);
         modelAndView.setViewName("/user/pay");
         return modelAndView;
     }

@@ -7,10 +7,22 @@ package com.cof.server.bean;
 public class Purse {
     private Integer id;
     private Integer userId;
-    private Float balance;//当前金额
-    private Float recharge;//充值
-    private Float withdrawals;//提现
-    private Integer state;//申请状态
+    /**
+     * 当前金额.
+     */
+    private Float balance;
+    /**
+     * 充值.
+     */
+    private Float recharge;
+    /**
+     * 提现.
+     */
+    private Float withdrawals;
+    /**
+     * 申请状态.
+     */
+    private Integer state;
 
     public Integer getId() {
         return id;

@@ -7,11 +7,8 @@ package com.cof.server.bean;
  */
 public class Catelog {
     private Integer id;
-
     private String name;
-
     private Integer number;
-
     private Byte status;
 
     public Integer getId() {

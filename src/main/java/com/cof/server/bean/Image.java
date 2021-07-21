@@ -7,9 +7,7 @@ package com.cof.server.bean;
  */
 public class Image {
     private Integer id;
-
     private Integer goodsId;
-
     private String imgUrl;
 
     public Integer getId() {
