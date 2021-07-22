@@ -5,6 +5,7 @@ import com.cof.server.service.*;
 import com.cof.server.utils.DateUtil;
 import com.cof.server.utils.MD5;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping(value ="/user")
 public class UserController {
 
@@ -56,11 +57,9 @@ public class UserController {
      */
     @RequestMapping(value = "/addUser")
     public String addUser(HttpServletRequest request, @ModelAttribute("user") User user1) {
-        System.out.println("kaishizhuce");
         String url = request.getHeader("Referer");
         User user = userService.getUserByPhone(user1.getPhone());
         if (user == null) {// 检测该用户是否已经注册
-            System.out.println("weizhuce");
             String t = DateUtil.getNowDate();
             // 对密码进行MD5加密
             String str = MD5.md5(user1.getPassword());
@@ -330,7 +329,7 @@ public class UserController {
             }
         }
         focusService.addFocusByUserIdAndId(goods_id, user_id);
-        return "redirect:/user/allx Focus";
+        return "redirect:/user/allFocus";
 
     }
 
