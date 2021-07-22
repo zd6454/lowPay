@@ -40,7 +40,7 @@ public class AdminController {
     public String login(HttpSession session) {
         // 清除session
         //session.invalidate();
-        return "/admin/login";
+        return "login";
     }
 
     @RequestMapping(value = "/index", method = RequestMethod.POST)
@@ -48,9 +48,9 @@ public class AdminController {
         Admin myadmin = adminService.findAdmin(admins.getPhone(), admins.getPassword());
         if (myadmin != null) {
             request.getSession().setAttribute("admin", myadmin);
-            return "/admin/index";
+            return "adminindex";
         }
-        return "/admin/login";
+        return "";
 
     }
 

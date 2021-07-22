@@ -44,7 +44,7 @@ public class UserController {
      * 测试数据库连接.
      * @return 所有用户
      */
-    @GetMapping("query")
+    @GetMapping("/query")
     public List<User> query(){
         return userService.getUserList();
     }

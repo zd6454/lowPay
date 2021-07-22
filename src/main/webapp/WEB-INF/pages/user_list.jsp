@@ -14,16 +14,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 
- .modal-header{
+.modal-header{
 	 text-align:center;
- }
-
+	} 
+	
 table td{
-	text-align:center;
-	border:0px;
+ text-align:center;
+ border:0px;
 }
+
+
 </style>
-<title>商品列表</title>
+<title>用户列表</title>
 	<!-- 分页 -->
 <link href="<%=basePath%>css/mypage.css" rel="stylesheet">
 
@@ -34,8 +36,8 @@ table td{
 </head>
 
 <body>
-	<jsp:include page="../main_top.jsp"></jsp:include>
-	<jsp:include page="../main_left.jsp"></jsp:include>
+	<jsp:include page="main_top.jsp"></jsp:include>
+	<jsp:include page="main_left.jsp"></jsp:include>
 	<!--=============================================================================================================================================================================-->
 	<!--main-container-part-->
 	<div id="content" style="margin-right: 100px;margin-top: 40px;">
@@ -43,8 +45,8 @@ table td{
 		<div id="content-header">
 			<div id="breadcrumb">
 				<a href="<%=basePath%>admin/indexs" title="主页"
-					class="tip-bottom"><i class="icon-home"></i>主页</a> <a title="商品列表"
-					class="tip-bottom">商品列表</a>
+					class="tip-bottom"><i class="icon-home"></i>主页</a> <a title="用户列表"
+					class="tip-bottom">用户列表</a>
 			</div>
 		</div>
 		<!--End-breadcrumbs-->
@@ -56,27 +58,23 @@ table td{
 			<div class="col-lg-12">
 				<h2 class="page-header"
 					style="margin-top:10px;text-align: center; font-family: '微软雅黑', Verdana, sans-serif, '宋体', serif;">
-					商品列表显示</h2>
+					用户列表显示</h2>
 			</div>
 
 			<!--搜索栏-->
-			 <form class="form-horizontal" id="myserchform" name="myform" action="<%=basePath%>admin/searchGoods" method="post">
+			 <form class="form-horizontal" id="myserchform" name="myform" action="<%=basePath%>admin/searchUser" method="post">
 				<div class="form-group">
 				<div  class="col-sm-8" style="text-align:center;">
-					<span >商品ID：</span>
-					<input type="number" placeholder="请输入纯数字~" name="id" value="${searchgoods.id}"/>
-					<span >名称：</span>
-					<input type="text"  name="name" value="${searchgoods.name}"/>
-					<span >状态：</span>
-					<select name="status" id="myselected" >
-					<option value="" selected="selected">选择商品状态</option>
-					<option value="1">在售</option>
-					<option value="0">下架</option>
-					</select>
+					<span >手机：</span>
+					<input type="number" placeholder="请输入正确的手机号~" name="phone" value="${searchuser.phone}"/>
+					<span >昵称：</span>
+					<input type="text" name="username" value="${searchuser.username}"/>
+					<span >QQ：</span>
+					<input type="text" name="qq" value="${searchuser.qq}"/>
 				</div>
 					<div class="col-sm-4">
 						<button class="btn btn-success btn-sm" type="submit" >查找</button>
-						<button class="btn btn-danger btn-sm" type="button" id="deleteGoodsButton">删除</button>
+						<button class="btn btn-danger btn-sm" type="button" id="deleteUserButton">删除</button>
 					</div>
 				</div>
 			</form>
@@ -87,51 +85,29 @@ table td{
 					<tr>
 						<th><input type="checkbox" id="selectAllButton"></th>
 						<th>ID</th>
-						<th>名称</th>
-						<th>类别</th>
-						<th>价格</th>
+						<th>手机号</th>
+						<th>昵称</th>
+						<th>QQ</th>
 						<th>创建时间</th>
 						<th>状态</th>
 						<th>操作</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${goodsGrid.rows}" var="item">
+					<c:forEach items="${userGrid.rows}" var="item">
 						<tr>
 							<td ><input type="checkbox" name="itemIds" value="${item.id}"></td>
 							<td>${item.id}</td>
-							<td>${item.name}</td>
+							<td>${item.phone}</td>
+							<td>${item.username}</td>
+							<td>${item.qq}</td>
+							<td>${item.createAt}</td>
 							<td>
-					        <c:if test="${item.catelogId == 1}">  
-							<span> 闲置数码</span>
-							</c:if>
-							<c:if test="${item.catelogId == 2}">  
-							<span>校园代步 </span>
-							</c:if>
-							<c:if test="${item.catelogId == 3}">  
-							<span> 电器日用  </span>
-							</c:if>
-							<c:if test="${item.catelogId == 4}">  
-							<span> 图书教材  </span>
-							</c:if>
-							<c:if test="${item.catelogId == 5}">  
-							<span>美妆衣物 </span>
-							</c:if>
-							<c:if test="${item.catelogId == 6}">  
-							<span> 运动棋牌</span>
-							</c:if>
-							<c:if test="${item.catelogId == 7}">  
-							<span> 票券小物</span>
-							</c:if>
-							</td>
-							<td>￥${item.realPrice}</td>
-							<td>${item.startTime}</td>
-							<td>
-							<c:if test="${item.status == 1}">
-							<span style="color:blue">在售</span>
+							<c:if test="${item.status == 1}">  
+							<span style="color:blue">正常</span>
 							</c:if>
 							<c:if test="${item.status == 0}">
-							<span style="color:red">下架</span>
+							<span style="color:red">禁用</span>
 							</c:if>
 							</td>
 							<td>
@@ -146,17 +122,17 @@ table td{
 			<div style="text-align: right">
 				<div class="pagination">
 					<ul>
-						<li><a>总商品数:${goodsGrid.total }个</a></li>
-						<li><a>第${goodsGrid.current }页</a></li>
-						<c:if test="${goodsGrid.current ne 1 }">
+						<li><a>总用户数:${userGrid.total }人</a></li>
+						<li><a>第${userGrid.current }页</a></li>
+						<c:if test="${userGrid.current ne 1 }">
 							<li><a 
-								href="<%=basePath%>admin/goodsList?pageNum=${goodsGrid.current-1 }">上一页</a>
+								href="<%=basePath%>admin/userList?pageNum=${userGrid.current-1 }">上一页</a>
 								</li>
 						</c:if>
 
-						<c:if test="${goodsGrid.current < (goodsGrid.total+9)/10-1 }">
+						<c:if test="${userGrid.current < (userGrid.total+9)/10-1 }">
 							<li><a
-								href="<%=basePath%>admin/goodsList?pageNum=${goodsGrid.current+1 }">下一页</a>
+								href="<%=basePath%>admin/userList?pageNum=${userGrid.current+1 }">下一页</a>
 							</li>
 						</c:if>
 					</ul>
@@ -167,7 +143,7 @@ table td{
 
 	
 	<!--==================================================================================================================-->
-	<jsp:include page="../main_bottom.jsp"></jsp:include>
+	<jsp:include page="main_bottom.jsp"></jsp:include>
 	
 <!--修改  模态框（Modal） -->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -175,54 +151,44 @@ table td{
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel" >修改商品信息</h4>
+                <h4 class="modal-title" id="myModalLabel" >修改用户信息</h4>
             </div>
-            <div class="modal-body" style="height:0 auto; ">
+            <div class="modal-body" style="height:300px; ">
             <form class="form-horizontal" id="myeditform" name="myform">
              <input type="hidden" id="id" name="id" value=""/>
+             <input type="hidden" id="power" name="power" value=""/>
+              <input type="hidden" id="goodsNum" name="goodsNum" value=""/>
             	<div class="form-group">
-					 <label class="col-sm-4 control-label" >名称:</label>
+					 <label class="col-sm-4 control-label" >手机号:</label>
 					<div class="col-sm-8">
-						<input type="text" class="form-control" id="my_name" name="name" style="margin-top: 8px;"/>
+						<input type="text" class="form-control" id="my_phone" name="phone" style="margin-top: 8px;"/>
 					</div>
 				</div>
 				<div class="form-group">
-					 <label class="col-sm-4 control-label" >类别:</label>
+					 <label class="col-sm-4 control-label" >昵称:</label>
 					<div class="col-sm-8">
-						<input type="text" class="form-control" id="my_catelogId" readonly name="catelogId" style="margin-top: 8px;"/>
+						<input type="text" class="form-control" id="my_username" name="username" style="margin-top: 8px;"/>
 					</div>
 				</div>
 				<div class="form-group">
-					 <label class="col-sm-4 control-label" >原价:</label>
+					 <label class="col-sm-4 control-label" >QQ:</label>
 					<div class="col-sm-8">
-						<input type="text" class="form-control" id="my_price" name="price" style="margin-top: 8px;"/>
-					</div>
-				</div>
-				<div class="form-group">
-					 <label class="col-sm-4 control-label" >售价:</label>
-					<div class="col-sm-8">
-						<input type="text" class="form-control" id="my_realPrice" name="realPrice" style="margin-top: 8px;"/>
+						<input type="text" class="form-control" id="my_qq" name="qq" style="margin-top: 8px;"/>
 					</div>
 				</div>
 				<div class="form-group">
 					 <label class="col-sm-4 control-label" >创建时间:</label>
 					<div class="col-sm-8">
-						 <input  type="text" id="my_startTime" name="startTime" class="form-control form_datetime" style="margin-top: 8px;">
+						 <input  type="text" id="datetimepicker"  name="createAt" class="form-control form_datetime" style="margin-top: 8px;">
 					</div>
-				</div>
-				<div class="form-group">
-					 <label class="col-sm-4 control-label" >描述:</label>
-					<div class="col-sm-8">
-					<textarea rows="3" cols="20" id="my_describle" name="describle" style="margin-top: 8px;width:365px">
-					</textarea>
-					</div>
+					
 				</div>
 				<div class="form-group">
 					 <label class="col-sm-4 control-label" >状态:</label>
 					<div class="col-sm-8">
 						<select name="status" style="margin-top: 8px;width: 372px;height: 27px;">
-						<option value="0" selected="selected">下架</option>
-						<option value="1">上架</option>
+						<option value="0" selected="selected">禁用</option>
+						<option value="1">正常</option>
 						</select>
 					</div>
 				</div>
@@ -243,52 +209,41 @@ table td{
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel" >查看商品信息</h4>
+                <h4 class="modal-title" id="myModalLabel" >查看用户信息</h4>
             </div>
-            <div class="modal-body" style="height:0 auto;">
+            <div class="modal-body" style="height:300px; ">
             <form class="form-horizontal" id="myviewform" name="myform">
              <input type="hidden" id="id" name="id" value=""/>
+            	 <input type="hidden" id="power" name="power" value=""/>
+            	  <input type="hidden" id="goodsNum" name="goodsNum" value=""/>
             	<div class="form-group">
-					 <label class="col-sm-4 control-label" >名称:</label>
+					 <label class="col-sm-4 control-label" >手机号:</label>
 					<div class="col-sm-8">
-						<input type="text" class="form-control" id="my_name" name="name" readonly style="margin-top: 8px;"/>
+						<input type="text" class="form-control" id="my_phone" name="phone" readonly style="margin-top: 8px;"/>
 					</div>
 				</div>
 				<div class="form-group">
-					 <label class="col-sm-4 control-label" >类别:</label>
+					 <label class="col-sm-4 control-label" >昵称:</label>
 					<div class="col-sm-8">
-						<input type="text" class="form-control" id="my_catelogId" name="catelogId" readonly style="margin-top: 8px;"/>
+						<input type="text" class="form-control" id="my_username" name="username" readonly style="margin-top: 8px;"/>
 					</div>
 				</div>
 				<div class="form-group">
-					 <label class="col-sm-4 control-label" >原价:</label>
+					 <label class="col-sm-4 control-label" >QQ:</label>
 					<div class="col-sm-8">
-						<input type="text" class="form-control" id="my_price" name="price" readonly style="margin-top: 8px;"/>
-					</div>
-				</div>
-				<div class="form-group">
-					 <label class="col-sm-4 control-label" >售价:</label>
-					<div class="col-sm-8">
-						<input type="text" class="form-control" id="my_realPrice" name="realPrice" readonly style="margin-top: 8px;"/>
+						<input type="text" class="form-control" id="my_qq" name="qq" readonly style="margin-top: 8px;"/>
 					</div>
 				</div>
 				<div class="form-group">
 					 <label class="col-sm-4 control-label" >创建时间:</label>
 					<div class="col-sm-8">
-						<input type="text" class="form-control" id="my_startTime" name="startTime" readonly style="margin-top: 8px;"/>
-					</div>
-				</div>
-				<div class="form-group">
-					 <label class="col-sm-4 control-label" >描述:</label>
-					<div class="col-sm-8">
-					<textarea rows="3" cols="20" id="my_describle" name="describle" readonly style="margin-top: 8px;width:365px">
-					</textarea>
+						<input type="text" class="form-control" id="my_createAt" name="createAt" readonly style="margin-top: 8px;"/>
 					</div>
 				</div>
 				<div class="form-group">
 					 <label class="col-sm-4 control-label" >状态:</label>
 					<div class="col-sm-8">
-						<input type="text" class="form-control" id="my_form" name="status" readonly style="margin-top: 8px;"/>
+						<input type="text" class="form-control" id="my_status" name="status" readonly style="margin-top: 8px;"/>
 					</div>
 				</div>
 			  </form>
@@ -313,34 +268,32 @@ table td{
 <script type="text/javascript">
 		//初始化时间
 		$(".form_datetime").datetimepicker({  
-			format:'yyyy-mm-dd',
+			format:'yyyy-mm-dd hh:ii',
 	    	todayHighlight: true,
 	    	language:'zh-CN',
-	    	minView: "month", 
 	      	autoclose: true
 		});  
-		
 
 		/* 查看 */
 		function doView(id){
 			$.ajax({
-				url:'<%=basePath%>admin/getGoods',
+				url:'<%=basePath%>admin/getUser',
 				type:'GET',
 				data:{id:id},
 				dataType:'json',
 				success:function(json){
 					if(json){
 						$('#myviewform').find("input[name='id']").val(json.id);
-						$('#myviewform').find("input[name='name']").val(json.name);
-						$('#myviewform').find("input[name='catelogId']").val(json.catelogId);
-						$('#myviewform').find("input[name='price']").val(json.price);
-						$('#myviewform').find("input[name='realPrice']").val(json.realPrice);
-						$('#myviewform').find("input[name='startTime']").val(json.startTime);
-						$('#myviewform').find("textarea[name='describle']").val(json.describle);
+						$('#myviewform').find("input[name='power']").val(json.power);
+						$('#myeditform').find("input[name='goodsNum']").val(json.goodsNum);
+						$('#myviewform').find("input[name='phone']").val(json.phone);
+						$('#myviewform').find("input[name='username']").val(json.username);
+						$('#myviewform').find("input[name='qq']").val(json.qq);
+						$('#myviewform').find("input[name='createAt']").val(json.createAt);
 						if(json.status==1){
-							$('#myviewform').find("input[name='status']").val('在售');
+							$('#myviewform').find("input[name='status']").val('正常');
 						}else{
-							$('#myviewform').find("input[name='status']").val('下架');
+							$('#myviewform').find("input[name='status']").val('禁用');
 						}
 						$('#viewModal').modal('toggle');
 					}
@@ -355,19 +308,19 @@ table td{
 		/* 修改 */
 		function doEdit(id){
 			$.ajax({
-				url:'<%=basePath%>admin/getGoods',
+				url:'<%=basePath%>admin/getUser',
 				type:'GET',
 				data:{id:id},
 				dataType:'json',
 				success:function(json){
 					if(json){
 						$('#myeditform').find("input[name='id']").val(json.id);
-						$('#myeditform').find("input[name='name']").val(json.name);
-						$('#myeditform').find("input[name='catelogId']").val(json.catelogId);
-						$('#myeditform').find("input[name='price']").val(json.price);
-						$('#myeditform').find("input[name='realPrice']").val(json.realPrice);
-						$('#myeditform').find("input[name='startTime']").val(json.startTime);
-						$('#myeditform').find("textarea[name='describle']").val(json.describle);
+						$('#myeditform').find("input[name='goodsNum']").val(json.goodsNum);
+						$('#myeditform').find("input[name='power']").val(json.power);
+						$('#myeditform').find("input[name='phone']").val(json.phone);
+						$('#myeditform').find("input[name='username']").val(json.username);
+						$('#myeditform').find("input[name='qq']").val(json.qq);
+						$('#myeditform').find("input[name='createAt']").val(json.createAt);
 						$('#myeditform').find("select[name='status']").val(json.status);
 						$('#editModal').modal('toggle');
 					}
@@ -383,7 +336,7 @@ table td{
 		/* 保存 */
 		function doSave(){
 			$.ajax({
-				url:'<%=basePath%>admin/updateGoods',
+				url:'<%=basePath%>admin/updateUser',
 				type:'POST',
 				data:$('#myeditform').serialize(),// 序列化表单值  
 				dataType:'json',
@@ -400,9 +353,6 @@ table td{
 				
 		}
 		
-	//根据值 动态选中
-	$("#myselected option[value='${searchgoods.status}']").attr("selected","selected"); 
-	
 </script>
 
 </html>

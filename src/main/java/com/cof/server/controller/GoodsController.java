@@ -80,7 +80,7 @@ public class GoodsController {
             String key = "catelog" + "Goods" + i;
             modelAndView.addObject(key, goodsAndImage);
         }
-        modelAndView.setViewName("goods/homeGoods");
+        modelAndView.setViewName("homeGoods");
         return modelAndView;
     }
 
@@ -106,7 +106,7 @@ public class GoodsController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("goodsExtendList", goodsExtendList);
         modelAndView.addObject("search", str);
-        modelAndView.setViewName("/goods/searchGoods");
+        modelAndView.setViewName("searchGoods");
         return modelAndView;
     }
 
@@ -139,7 +139,7 @@ public class GoodsController {
         }
         modelAndView.addObject("goodsExtendList", goodsAndImage);
         modelAndView.addObject("search", str);
-        modelAndView.setViewName("/goods/catelogGoods");
+        modelAndView.setViewName("catelogGoods");
         return modelAndView;
     }
 
@@ -168,7 +168,7 @@ public class GoodsController {
         modelAndView.addObject("goodsExtendList", goodsExtendList);
         modelAndView.addObject("catelog", catelog);
         modelAndView.addObject("search", str);
-        modelAndView.setViewName("/goods/catelogGoods");
+        modelAndView.setViewName("catelogGoods");
         return modelAndView;
     }
 
@@ -196,7 +196,7 @@ public class GoodsController {
         modelAndView.addObject("seller", seller);
         modelAndView.addObject("search", str);
         modelAndView.addObject("catelog", catelog);
-        modelAndView.setViewName("/goods/detailGoods");
+        modelAndView.setViewName("detailGoods");
         return modelAndView;
 
     }
@@ -237,7 +237,7 @@ public class GoodsController {
         modelAndView.addObject("myPurse", myPurse);
         // 将商品信息添加到model
         modelAndView.addObject("goodsExtend", goodsExtend);
-        modelAndView.setViewName("/goods/editGoods");
+        modelAndView.setViewName("editGoods");
         return modelAndView;
     }
 
@@ -311,7 +311,7 @@ public class GoodsController {
         Purse myPurse = purseService.getPurseByUserId(userId);
         ModelAndView mv = new ModelAndView();
         mv.addObject("myPurse", myPurse);
-        mv.setViewName("/goods/pubGoods");
+        mv.setViewName("pubGoods");
         return mv;
     }
 
