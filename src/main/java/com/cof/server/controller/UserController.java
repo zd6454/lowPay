@@ -5,6 +5,7 @@ import com.cof.server.service.*;
 import com.cof.server.utils.DateUtil;
 import com.cof.server.utils.MD5;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping(value ="/user")
 public class UserController {
 
@@ -272,6 +273,7 @@ public class UserController {
         Integer userId = cur_user.getId();
         List<Focus> focusList = focusService.getFocusByUserId(userId);
         List<GoodsExtend> goodsAndImage = new ArrayList<GoodsExtend>();
+
         for (int i = 0; i < focusList.size(); i++) {
             // 将用户信息和image信息封装到GoodsExtend类中，传给前台
             GoodsExtend goodsExtend = new GoodsExtend();
@@ -312,7 +314,7 @@ public class UserController {
      */
     @RequestMapping(value = "/addFocus/{id}")
     public String addFocus(HttpServletRequest request, @PathVariable("id") Integer goods_id) {
-        User cur_user = (User) request.getSession().getAttribute("cur_user");
+        User cur_user = (User)request.getSession().getAttribute("cur_user");
         Integer user_id = cur_user.getId();
         //首先获取用户所有的关注列表
         List<Focus> focus = focusService.getFocusByUserId(user_id);
@@ -321,17 +323,18 @@ public class UserController {
             focusService.addFocusByUserIdAndId(goods_id, user_id);
             return "redirect:/user/allFocus";
         }
+        System.out.println("物品的ID："+goods_id);
         //遍历所有的关注列表
         for (Focus myfocus : focus) {
             int goodsId = myfocus.getGoodsId();
+            System.out.println("列表物品的ID："+goodsId);
             //若该商品已经被关注，则直接返回
             if (goodsId == goods_id.intValue()) {
                 return "redirect:/user/allFocus";
             }
         }
         focusService.addFocusByUserIdAndId(goods_id, user_id);
-        return "redirect:/user/allx Focus";
-
+        return "redirect:/user/allFocus";
     }
 
     /**

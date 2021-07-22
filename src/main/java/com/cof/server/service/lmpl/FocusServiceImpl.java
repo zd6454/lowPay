@@ -39,6 +39,7 @@ public class FocusServiceImpl implements FocusService {
      */
     @Override
     public void addFocusByUserIdAndId(Integer goods_id, Integer user_id) {
+        System.out.println("在service里面的goods——id："+goods_id);
 
         focusMapper.addFocusByUserIdAndGoodsId(goods_id,user_id);
 
