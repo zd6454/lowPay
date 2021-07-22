@@ -56,9 +56,11 @@ public class UserController {
      */
     @RequestMapping(value = "/addUser")
     public String addUser(HttpServletRequest request, @ModelAttribute("user") User user1) {
+        System.out.println("kaishizhuce");
         String url = request.getHeader("Referer");
         User user = userService.getUserByPhone(user1.getPhone());
         if (user == null) {// 检测该用户是否已经注册
+            System.out.println("weizhuce");
             String t = DateUtil.getNowDate();
             // 对密码进行MD5加密
             String str = MD5.md5(user1.getPassword());
@@ -211,7 +213,7 @@ public class UserController {
         mv.addObject("notice", notice);
         mv.addObject("myPurse", myPurse);
         mv.addObject("users", users);
-        mv.setViewName("/user/home");
+        mv.setViewName("home");
         return mv;
     }
 
@@ -227,7 +229,7 @@ public class UserController {
         Purse myPurse = purseService.getPurseByUserId(userId);
         ModelAndView mv = new ModelAndView();
         mv.addObject("myPurse", myPurse);
-        mv.setViewName("/user/basic");
+        mv.setViewName("basic");
         return mv;
     }
 
@@ -254,7 +256,7 @@ public class UserController {
         Purse myPurse = purseService.getPurseByUserId(userId);
         ModelAndView mv = new ModelAndView();
         mv.addObject("goodsAndImage", goodsAndImage);
-        mv.setViewName("/user/goods");
+        mv.setViewName("goods");
         mv.addObject("myPurse", myPurse);
         return mv;
     }
@@ -284,7 +286,7 @@ public class UserController {
         ModelAndView mv = new ModelAndView();
         mv.addObject("goodsAndImage", goodsAndImage);
         mv.addObject("myPurse", myPurse);
-        mv.setViewName("/user/focus");
+        mv.setViewName("focus");
         return mv;
     }
 
@@ -328,7 +330,7 @@ public class UserController {
             }
         }
         focusService.addFocusByUserIdAndId(goods_id, user_id);
-        return "redirect:/user/allFocus";
+        return "redirect:/user/allx Focus";
 
     }
 
@@ -344,7 +346,7 @@ public class UserController {
         Purse purse = purseService.getPurseByUserId(user_id);
         ModelAndView mv = new ModelAndView();
         mv.addObject("myPurse", purse);
-        mv.setViewName("/user/purse");
+        mv.setViewName("purse");
         return mv;
     }
 

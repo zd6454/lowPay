@@ -14,8 +14,8 @@
     <select id="findAdmin" resultMap="BaseResultMap">
         select *
         from admin
-        where phone = #{0}
-          and password = #{1};
+        where phone = #{phone}
+          and password = #{password};
     </select>
 
     <select id="findAdminById" resultMap="BaseResultMap">

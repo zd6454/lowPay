@@ -52,7 +52,7 @@ $(document).ready(function () {
 			return;
 		}
 		$.ajax({
-			url:basePath+'/admin/deleteUser',//有弊端，后期完善
+			url:basePath+'/deleteUser',//有弊端，后期完善
 			type:'POST',
 			data:{"ids":idArr},
 			dataType:'json',
@@ -84,7 +84,7 @@ $(document).ready(function () {
 			return;
 		}
 		$.ajax({
-			url:basePath+'/admin/deleteGoods',//有弊端，后期完善
+			url:basePath+'/deleteGoods',//有弊端，后期完善
 			type:'POST',
 			data:{"ids":idArr},
 			dataType:'json',
@@ -116,7 +116,7 @@ $(document).ready(function () {
 			return;
 		}
 		$.ajax({
-			url:basePath+'/admin/deleteOrders',//有弊端，后期完善
+			url:basePath+'/deleteOrders',//有弊端，后期完善
 			type:'POST',
 			data:{"ids":idArr},
 			dataType:'json',

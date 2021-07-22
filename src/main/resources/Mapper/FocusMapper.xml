@@ -16,13 +16,13 @@
     <delete id="deleteFocusByUserIdAndGoodsId" parameterType="java.lang.Integer">
         delete
         from focus
-        where goods_id = #{0}
-          and user_id = #{1}
+        where goods_id = #{goods_id}
+          and user_id = #{user_id}
     </delete>
 
     <insert id="addFocusByUserIdAndGoodsId" parameterType="java.lang.Integer">
         INSERT INTO focus(goods_id, user_id)
-        VALUES (#{0}, #{1});
+        VALUES (#{user_id}, #{user_id});
     </insert>
 
 </mapper>

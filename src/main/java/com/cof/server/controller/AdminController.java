@@ -36,6 +36,11 @@ public class AdminController {
     @Resource
     private AdminService adminService;
 
+    /**
+     * 管理员登录.
+     * @param session
+     * @return
+     */
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String login(HttpSession session) {
         // 清除session
@@ -43,6 +48,12 @@ public class AdminController {
         return "login";
     }
 
+    /**
+     * 登录判断.
+     * @param request
+     * @param admins
+     * @return
+     */
     @RequestMapping(value = "/index", method = RequestMethod.POST)
     public String index(HttpServletRequest request, Admin admins) {
         Admin myadmin = adminService.findAdmin(admins.getPhone(), admins.getPassword());
@@ -50,7 +61,7 @@ public class AdminController {
             request.getSession().setAttribute("admin", myadmin);
             return "adminindex";
         }
-        return "";
+        return "login";
 
     }
 
@@ -61,9 +72,9 @@ public class AdminController {
             Integer id = admin.getId();
             Admin myadmin = adminService.findAdminById(id);
             request.getSession().setAttribute("admin", myadmin);
-            return "/admin/index";
+            return "adminindex";
         }
-        return "/admin/login";
+        return "login";
 
     }
 
@@ -75,7 +86,7 @@ public class AdminController {
         Admin admin = (Admin) request.getSession().getAttribute("admin");
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("admin", admin);
-        modelAndView.setViewName("admin/info");
+        modelAndView.setViewName("info");
         return modelAndView;
     }
 
@@ -86,7 +97,7 @@ public class AdminController {
         Admin admin = (Admin) request.getSession().getAttribute("admin");
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("admin", admin);
-        modelAndView.setViewName("admin/modify");
+        modelAndView.setViewName("modify");
         return modelAndView;
     }
 
@@ -103,10 +114,10 @@ public class AdminController {
             adminService.updateAdmin(admins);
         } else {
             modelAndView.addObject("msg", "原密码有误，请重新输入！");
-            modelAndView.setViewName("admin/modify");
+            modelAndView.setViewName("modify");
             return modelAndView;
         }
-        modelAndView.setViewName("admin/login");
+        modelAndView.setViewName("login");
         return modelAndView;
     }
 
@@ -129,7 +140,7 @@ public class AdminController {
         userGrid.setRows(rows);
         userGrid.setTotal(total);
         modelAndView.addObject("userGrid", userGrid);
-        modelAndView.setViewName("admin/user/user_list");
+        modelAndView.setViewName("user_list");
         return modelAndView;
     }
 
@@ -193,7 +204,7 @@ public class AdminController {
         userGrid.setTotal(total);
         mv.addObject("userGrid", userGrid);
         mv.addObject("searchuser", searchuser);
-        mv.setViewName("admin/user/user_list");
+        mv.setViewName("user_list");
         return mv;
     }
 
@@ -216,7 +227,7 @@ public class AdminController {
         goodsGrid.setRows(rows);
         goodsGrid.setTotal(total);
         modelAndView.addObject("goodsGrid", goodsGrid);
-        modelAndView.setViewName("admin/goods/goods_list");
+        modelAndView.setViewName("goods_list");
         return modelAndView;
     }
 
@@ -224,6 +235,7 @@ public class AdminController {
     @RequestMapping(value = "/getGoods")
     @ResponseBody
     public Goods getGoods(HttpServletRequest request) {
+        System.out.println("1");
         String id = request.getParameter("id");
         Goods goods = goodsService.getGoodsById(Integer.parseInt(id));
         return goods;
@@ -282,7 +294,7 @@ public class AdminController {
         goodsGrid.setTotal(total);
         mv.addObject("goodsGrid", goodsGrid);
         mv.addObject("searchgoods", searchgoods);
-        mv.setViewName("admin/goods/goods_list");
+        mv.setViewName("goods_list");
         return mv;
     }
 
@@ -305,7 +317,7 @@ public class AdminController {
         ordersGrid.setRows(rows);
         ordersGrid.setTotal(total);
         modelAndView.addObject("ordersGrid", ordersGrid);
-        modelAndView.setViewName("admin/orders/orders_list");
+        modelAndView.setViewName("orders_list");
         return modelAndView;
     }
 
@@ -380,7 +392,7 @@ public class AdminController {
         ordersGrid.setTotal(total);
         mv.addObject("ordersGrid", ordersGrid);
         mv.addObject("searchorders", searchorders);
-        mv.setViewName("admin/orders/orders_list");
+        mv.setViewName("orders_list");
         return mv;
     }
 
@@ -405,7 +417,7 @@ public class AdminController {
         purseGrid.setRows(rows);
         purseGrid.setTotal(total);
         modelAndView.addObject("purseGrid", purseGrid);
-        modelAndView.setViewName("admin/purse/purse_list");
+        modelAndView.setViewName("purse_list");
         return modelAndView;
     }
 
@@ -430,7 +442,7 @@ public class AdminController {
         purseGrid.setTotal(total);
         mv.addObject("purseGrid", purseGrid);
         mv.addObject("searchpurse", searchpurse);
-        mv.setViewName("admin/purse/purse_list");
+        mv.setViewName("purse_list");
         return mv;
     }
 

@@ -47,7 +47,7 @@ public class OrdersController {
         mv.addObject("ordersOfSell", ordersList2);
         mv.addObject("orders", ordersList1);
         mv.addObject("myPurse", myPurse);
-        mv.setViewName("/user/orders");
+        mv.setViewName("orders");
         return mv;
     }
 

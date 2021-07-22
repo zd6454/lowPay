@@ -59,7 +59,7 @@
         describle
     </sql>
     <sql id="Factor">
-        --     and end_time >= now() order by polish_time DESC
+
     </sql>
 
 
@@ -112,7 +112,7 @@
         select
         *
         from goods
-        where id = #{id,jdbcType=INTEGER};
+        where id = #{goodsId};
         <include refid="Factor"></include>
     </select>
 

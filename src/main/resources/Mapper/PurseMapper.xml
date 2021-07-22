@@ -14,16 +14,16 @@
     <update id="updatePurseByuserId">
 
         UPDATE purse
-        SET balance=balance + #{1}
-        WHERE user_id = #{0};
+        SET balance=balance + #{balance}
+        WHERE user_id = #{userId};
 
     </update>
 
     <update id="updatePurseOfdel">
 
         UPDATE purse
-        SET balance=balance - #{1}
-        WHERE user_id = #{0};
+        SET balance=balance - #{balance}
+        WHERE user_id = #{userId};
 
     </update>
     <update id="updateByPrimaryKey">

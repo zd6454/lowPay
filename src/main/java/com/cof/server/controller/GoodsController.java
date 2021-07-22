@@ -402,7 +402,7 @@ public class GoodsController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("goodsExtend", goodsExtend);
         modelAndView.addObject("myPurse", myPurse);
-        modelAndView.setViewName("/user/pay");
+        modelAndView.setViewName("pay");
         return modelAndView;
     }
 }
