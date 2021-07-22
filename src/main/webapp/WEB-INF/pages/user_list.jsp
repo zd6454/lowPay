@@ -36,8 +36,8 @@ table td{
 </head>
 
 <body>
-	<jsp:include page="../main_top.jsp"></jsp:include>
-	<jsp:include page="../main_left.jsp"></jsp:include>
+	<jsp:include page="main_top.jsp"></jsp:include>
+	<jsp:include page="main_left.jsp"></jsp:include>
 	<!--=============================================================================================================================================================================-->
 	<!--main-container-part-->
 	<div id="content" style="margin-right: 100px;margin-top: 40px;">
@@ -143,7 +143,7 @@ table td{
 
 	
 	<!--==================================================================================================================-->
-	<jsp:include page="../main_bottom.jsp"></jsp:include>
+	<jsp:include page="main_bottom.jsp"></jsp:include>
 	
 <!--修改  模态框（Modal） -->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -161,7 +161,7 @@ table td{
             	<div class="form-group">
 					 <label class="col-sm-4 control-label" >手机号:</label>
 					<div class="col-sm-8">
-						<input type="text" class="form-control" id="my_phone" readonly name="phone" style="margin-top: 8px;"/>
+						<input type="text" class="form-control" id="my_phone" name="phone" style="margin-top: 8px;"/>
 					</div>
 				</div>
 				<div class="form-group">
@@ -173,7 +173,7 @@ table td{
 				<div class="form-group">
 					 <label class="col-sm-4 control-label" >QQ:</label>
 					<div class="col-sm-8">
-						<input type="text" class="form-control" id="my_qq"  readonly name="qq" style="margin-top: 8px;"/>
+						<input type="text" class="form-control" id="my_qq" name="qq" style="margin-top: 8px;"/>
 					</div>
 				</div>
 				<div class="form-group">

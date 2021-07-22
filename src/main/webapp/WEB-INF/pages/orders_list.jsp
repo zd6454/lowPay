@@ -35,8 +35,8 @@
 </head>
 
 <body>
-	<jsp:include page="../main_top.jsp"></jsp:include>
-	<jsp:include page="../main_left.jsp"></jsp:include>
+	<jsp:include page="main_top.jsp"></jsp:include>
+	<jsp:include page="main_left.jsp"></jsp:include>
 	<!--=============================================================================================================================================================================-->
 	<!--main-container-part-->
 	<div id="content" style="margin-right: 100px; margin-top: 40px;">
@@ -145,7 +145,7 @@
 
 
 	<!--==================================================================================================================-->
-	<jsp:include page="../main_bottom.jsp"></jsp:include>
+	<jsp:include page="main_bottom.jsp"></jsp:include>
 
 	<!--修改  模态框（Modal） -->
 	<div class="modal fade" id="editModal" tabindex="-1" role="dialog"
@@ -163,7 +163,7 @@
 						<div class="form-group">
 							<label class="col-sm-4 control-label">订单编号:</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" readonly name="orderNum" style="margin-top: 8px;" />
+								<input type="text" class="form-control" name="orderNum" style="margin-top: 8px;" />
 							</div>
 						</div>
 						<div class="form-group">
