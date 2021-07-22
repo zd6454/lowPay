@@ -22,7 +22,7 @@
 
     <insert id="addFocusByUserIdAndGoodsId" parameterType="java.lang.Integer">
         INSERT INTO focus(goods_id, user_id)
-        VALUES (#{user_id}, #{user_id});
+        VALUES (#{goods_id}, #{user_id});
     </insert>
 
 </mapper>
