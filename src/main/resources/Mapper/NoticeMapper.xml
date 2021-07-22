@@ -6,9 +6,9 @@
         <result column="create_at" property="createAt" jdbcType="VARCHAR"/>
         <result column="context" property="context" jdbcType="LONGVARCHAR"/>
         <result column="status" property="status" jdbcType="TINYINT"/>
-        <association property="user" javaType="com.ldu.pojo.User" resultMap="userMap"/>
+        <association property="user" javaType="com.cof.server.bean.User" resultMap="userMap"/>
     </resultMap>
-    <resultMap id="userMap" type="com.ldu.pojo.User">
+    <resultMap id="userMap" type="com.cof.server.bean.User">
         <id column="id" property="id" jdbcType="INTEGER"/>
         <result column="phone" property="phone" jdbcType="CHAR"/>
         <result column="username" property="username" jdbcType="VARCHAR"/>
@@ -27,7 +27,7 @@
         where n.user_id = u.id
         order by n.create_at desc
     </select>
-    <insert id="insertSelective" parameterType="com.ldu.pojo.Notice">
+    <insert id="insertSelective" parameterType="com.cof.server.bean.Notice">
         insert into notice(id, user_id, create_at, context, status)
         values (#{id}, #{user.id}, #{createAt}, #{context}, #{status})
     </insert>

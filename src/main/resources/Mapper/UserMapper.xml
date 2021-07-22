@@ -64,7 +64,7 @@
         from user
         where id = #{id,jdbcType=INTEGER}
     </delete>
-    <insert id="insert" parameterType="com.ldu.pojo.User" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insert" parameterType="com.cof.server.bean.User" useGeneratedKeys="true" keyProperty="id">
         insert into user (id, phone, username,
                           password, QQ, create_at,
                           goods_num, power, last_login,
@@ -74,7 +74,7 @@
                 #{goodsNum,jdbcType=INTEGER}, #{power,jdbcType=INTEGER}, #{lastLogin,jdbcType=VARCHAR},
                 #{status,jdbcType=TINYINT})
     </insert>
-    <insert id="insertSelective" parameterType="com.ldu.pojo.User">
+    <insert id="insertSelective" parameterType="com.cof.server.bean.User">
         insert into user
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -141,7 +141,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.ldu.pojo.User">
+    <update id="updateByPrimaryKeySelective" parameterType="com.cof.server.bean.User">
         update user
         <set>
             <if test="phone != null">
@@ -174,7 +174,7 @@
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.ldu.pojo.User">
+    <update id="updateByPrimaryKey" parameterType="com.cof.server.bean.User">
         update user
         set phone      = #{phone,jdbcType=CHAR},
             username   = #{username,jdbcType=VARCHAR},

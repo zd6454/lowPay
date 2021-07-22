@@ -28,13 +28,13 @@
         from catelog
         where id = #{id,jdbcType=INTEGER}
     </delete>
-    <insert id="insert" parameterType="com.ldu.pojo.Catelog">
+    <insert id="insert" parameterType="com.cof.server.bean.Catelog">
         insert into catelog (id, name, number,
                              status)
         values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{number,jdbcType=INTEGER},
                 #{status,jdbcType=TINYINT})
     </insert>
-    <insert id="insertSelective" parameterType="com.ldu.pojo.Catelog">
+    <insert id="insertSelective" parameterType="com.cof.server.bean.Catelog">
         insert into catelog
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -65,7 +65,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.ldu.pojo.Catelog">
+    <update id="updateByPrimaryKeySelective" parameterType="com.cof.server.bean.Catelog">
         update catelog
         <set>
             <if test="name != null">
@@ -80,7 +80,7 @@
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.ldu.pojo.Catelog">
+    <update id="updateByPrimaryKey" parameterType="com.cof.server.bean.Catelog">
         update catelog
         set name   = #{name,jdbcType=VARCHAR},
             number = #{number,jdbcType=INTEGER},

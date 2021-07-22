@@ -10,7 +10,7 @@
         <result column="order_information" property="orderInformation" jdbcType="VARCHAR"/>
         <result column="order_date" property="orderDate" jdbcType="VARCHAR"/>
 
-        <association property="goods" javaType="com.ldu.pojo.Goods">
+        <association property="goods" javaType="com.cof.server.bean.Goods">
             <id property="id" column="id"/>
             <result property="name" column="name"/>
             <result property="price" column="price"/>
@@ -64,7 +64,7 @@
         </if>
     </select>
 
-    <insert id="addOrders" parameterType="com.ldu.pojo.Orders" useGeneratedKeys="true" keyProperty="id">
+    <insert id="addOrders" parameterType="com.cof.server.bean.Orders" useGeneratedKeys="true" keyProperty="id">
 
         insert into orders (user_id, goods_id, order_num, order_price, order_information, order_date)
         values (#{userId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, #{orderNum,jdbcType=BIGINT},
@@ -84,7 +84,7 @@
         WHERE orders.order_num = #{orderNum,jdbcType=INTEGER};
     </update>
 
-    <update id="updateByPrimaryKey" parameterType="com.ldu.pojo.Orders">
+    <update id="updateByPrimaryKey" parameterType="com.cof.server.bean.Orders">
         UPDATE orders
         <set>
             <if test="userId != null">

@@ -7,7 +7,7 @@
         <result column="goods_id" property="goodsId" jdbcType="INTEGER"/>
         <result column="create_at" property="createAt" jdbcType="VARCHAR"/>
     </resultMap>
-    <resultMap id="ResultMapWithBLOBs" type="com.ldu.pojo.Comments" extends="BaseResultMap">
+    <resultMap id="ResultMapWithBLOBs" type="com.cof.server.bean.Comments" extends="BaseResultMap">
         <result column="content" property="content" jdbcType="LONGVARCHAR"/>
     </resultMap>
     <sql id="Base_Column_List">
@@ -30,13 +30,13 @@
         from comments
         where id = #{id,jdbcType=INTEGER}
     </delete>
-    <insert id="insert" parameterType="com.ldu.pojo.Comments">
+    <insert id="insert" parameterType="com.cof.server.bean.Comments">
         insert into comments (id, user_id, goods_id,
                               create_at, content)
         values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER},
                 #{createAt,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR})
     </insert>
-    <insert id="insertSelective" parameterType="com.ldu.pojo.Comments">
+    <insert id="insertSelective" parameterType="com.cof.server.bean.Comments">
         insert into comments
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -73,7 +73,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.ldu.pojo.Comments">
+    <update id="updateByPrimaryKeySelective" parameterType="com.cof.server.bean.Comments">
         update comments
         <set>
             <if test="userId != null">
@@ -91,7 +91,7 @@
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ldu.pojo.Comments">
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cof.server.bean.Comments">
         update comments
         set user_id   = #{userId,jdbcType=INTEGER},
             goods_id  = #{goodsId,jdbcType=INTEGER},
@@ -99,7 +99,7 @@
             content   = #{content,jdbcType=LONGVARCHAR}
         where id = #{id,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.ldu.pojo.Comments">
+    <update id="updateByPrimaryKey" parameterType="com.cof.server.bean.Comments">
         update comments
         set user_id   = #{userId,jdbcType=INTEGER},
             goods_id  = #{goodsId,jdbcType=INTEGER},

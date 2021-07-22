@@ -21,7 +21,7 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("/User")
+@RequestMapping(value ="/user")
 public class UserController {
 
     @Resource

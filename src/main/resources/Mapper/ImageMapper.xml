@@ -5,7 +5,7 @@
         <id column="id" property="id" jdbcType="INTEGER"/>
         <result column="goods_id" property="goodsId" jdbcType="INTEGER"/>
     </resultMap>
-    <resultMap id="ResultMapWithBLOBs" type="com.ldu.pojo.Image" extends="BaseResultMap">
+    <resultMap id="ResultMapWithBLOBs" type="com.cof.server.bean.Image" extends="BaseResultMap">
         <result column="img_url" property="imgUrl" jdbcType="LONGVARCHAR"/>
     </resultMap>
     <sql id="Base_Column_List">
@@ -38,11 +38,11 @@
         from image
         where goods_id = #{goodsId,jdbcType=INTEGER}
     </delete>
-    <insert id="insert" parameterType="com.ldu.pojo.Image">
+    <insert id="insert" parameterType="com.cof.server.bean.Image">
         insert into image (id, goods_id, img_url)
         values (#{id,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, #{imgUrl,jdbcType=LONGVARCHAR})
     </insert>
-    <insert id="insertSelective" parameterType="com.ldu.pojo.Image">
+    <insert id="insertSelective" parameterType="com.cof.server.bean.Image">
         insert into image
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -67,7 +67,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.ldu.pojo.Image">
+    <update id="updateByPrimaryKeySelective" parameterType="com.cof.server.bean.Image">
         update image
         <set>
             <if test="goodsId != null">
@@ -79,13 +79,13 @@
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ldu.pojo.Image">
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cof.server.bean.Image">
         update image
         set goods_id = #{goodsId,jdbcType=INTEGER},
             img_url  = #{imgUrl,jdbcType=LONGVARCHAR}
         where id = #{id,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.ldu.pojo.Image">
+    <update id="updateByPrimaryKey" parameterType="com.cof.server.bean.Image">
         update image
         set goods_id = #{goodsId,jdbcType=INTEGER}
         where id = #{id,jdbcType=INTEGER}
