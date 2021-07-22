@@ -143,7 +143,7 @@
                 </c:if>
                 <c:if test="${!empty cur_user}">
                     <li class="publish-btn">
-                        <button data-position="bottom" class="red lighten-1 waves-effect waves-light btn">
+                        <button data-position="bottom" class="blue lighten-1 waves-effect waves-light btn">
                             <a href="<%=basePath%>goods/publishGoods">我要发布</a>
                         </button>
                     </li>

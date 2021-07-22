@@ -161,7 +161,7 @@ table td{
             	<div class="form-group">
 					 <label class="col-sm-4 control-label" >手机号:</label>
 					<div class="col-sm-8">
-						<input type="text" class="form-control" id="my_phone" name="phone" style="margin-top: 8px;"/>
+						<input type="text" class="form-control" id="my_phone" readonly name="phone" style="margin-top: 8px;"/>
 					</div>
 				</div>
 				<div class="form-group">
@@ -173,7 +173,7 @@ table td{
 				<div class="form-group">
 					 <label class="col-sm-4 control-label" >QQ:</label>
 					<div class="col-sm-8">
-						<input type="text" class="form-control" id="my_qq" name="qq" style="margin-top: 8px;"/>
+						<input type="text" class="form-control" id="my_qq"  readonly name="qq" style="margin-top: 8px;"/>
 					</div>
 				</div>
 				<div class="form-group">

@@ -115,12 +115,12 @@
                     <h1 style="margin-left: 210px;">发布物品</h1><hr />
                     <div class="changeinfo">
                         <span>物品名：</span>
-                        <input class="in_info" type="text" name="name" placeholder="请输入物品名"/>
+                        <input class="in_info" type="text" name="name" placeholder="请输入物品名" required/>
                         <span>(*必填)</span>
                     </div>
                     <div class="changeinfo">
                         <span>出售价格：</span>
-                        <input class="in_info" type="text" name="price" placeholder="请输入出售价格"/>
+                        <input class="in_info" type="text" name="price" placeholder="请输入出售价格" required/>
                         <span>(*必填)</span>
                     </div>
                     <div class="changeinfo">

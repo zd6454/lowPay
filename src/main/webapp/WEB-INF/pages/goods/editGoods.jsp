@@ -110,12 +110,12 @@
                     <h1 style="margin-left: 210px;">修改物品信息</h1><hr />
                     <div class="changeinfo">
                         <span>物品名：</span>
-                        <input class="in_info" type="text" name="name" placeholder="请输入物品名" value="${goodsExtend.goods.name}"/>
+                        <input class="in_info" type="text" name="name" placeholder="请输入物品名" value="${goodsExtend.goods.name}" required/>
                         <span>(*必填)</span>
                     </div>
                     <div class="changeinfo">
                         <span>出售价格：</span>
-                        <input class="in_info" type="text" name="price" placeholder="请输入出售价格" value="${goodsExtend.goods.price}"/>
+                        <input class="in_info" type="text" name="price" placeholder="请输入出售价格" value="${goodsExtend.goods.price}" required/>
                        <span>(*必填)</span>
                    </div>
                    <div class="changeinfo">

@@ -102,7 +102,7 @@
         -->
         <div id="user_content">
             <div class="basic">
-                <form:form action="../user/updateInfo" method="post" commandName="user" role="form">
+                <form:form action="../user/updateInfo" method="post" commandName="user" role="form" id="modify">
                     <h1>完善与修改个人信息</h1><hr />
                     <div class="changeinfo">
                         <span>昵称：</span>
@@ -122,60 +122,42 @@
                         <input class="in_info" type="text" name="qq" placeholder="请输入QQ" value="${cur_user.qq}"/>
                     </div>
                     <input type="submit" class="setting-save" value="保存修改信息" />
-                </form:form>
+                    </form:form>
             </div>
-            <!--
-
-                描述：最右侧，可能认识的人
-           
-            <div class="recommend">
-                <div class="title">
-                    <span class="text">可能认识的人</span>
-                    <span class="change">换一组</span>
-                    <span class="underline"></span>
-                </div>
-                <ul>
-                    <li>
-                        <a href="" class="head_img">
-                            <img src="<%=basePath%>img/photo1.jpg">
-                        </a>
-                        <span>Brudce</span>
-                        <div class="fa fa-plus-square"></div>
-                    </li>
-                    <li>
-                        <a href="" class="head_img">
-                            <img src="<%=basePath%>img/photo2.jpg">
-                        </a>
-                        <span>Graham</span>
-                        <div class="fa fa-plus-square"></div>
-                    </li>
-                    <li>
-                        <a href="" class="head_img">
-                            <img src="<%=basePath%>img/photo3.jpg">
-                        </a>
-                        <span>策马奔腾hly</span>
-                        <div class="fa fa-plus-square"></div>
-                    </li>
-                    <li>
-                        <a href="" class="head_img">
-                            <img src="<%=basePath%>img/photo4.jpg">
-                        </a>
-                        <span>Danger-XFH</span>
-                        <div class="fa fa-plus-square"></div>
-                    </li>
-                    <li>
-                        <a href="" class="head_img">
-                            <img src="<%=basePath%>img/photo5.jpg">
-                        </a>
-                        <span>Keithw</span>
-                        <div class="fa fa-plus-square"></div>
-                    </li>
-                </ul>
-            </div>
-             -->
         </div>
     </div>
 </div>
-
 </body>
+<script src="<%=basePath%>js/jquery.min.js"></script>
+<script src="<%=basePath%>js/matrix.login.js" type="text/javascript" charset="utf-8"></script>
+<script src="<%=basePath%>js/jquery.validate.js"></script>
+<script src="<%=basePath%>js/jquery.md5.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $("#modify").validate({
+            rules: {
+                qq: {
+                    digits: true,
+                    minlength: 5,
+                    maxlength: 15,
+                },
+            },
+                messages: {
+                    qq: {
+                        digits: jQuery.format("请输入数字"),
+                        minlength: jQuery.format("qq号最短5个数字"),
+                        maxlength: jQuery.format("qq号最长15个数字")
+                    }
+                },
+
+            errorPlacement:function(error,element){
+                if(element.is("input[name='qq']")){
+                    error.appendTo(element.parent().parent());
+                }else{
+                    error.insertAfter(element);
+                }
+            }
+        });
+    })
+</script>
 </html>

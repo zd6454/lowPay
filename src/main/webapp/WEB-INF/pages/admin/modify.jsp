@@ -20,6 +20,7 @@
 <script src="<%=basePath%>js/jquery.md5.js"></script>
 </head>
 
+
 <body>
 
 	<!--=============================================================================================================================================================================-->
@@ -35,14 +36,14 @@
 		<!--End-breadcrumbs-->
 
 		<div id="main">
-			<form class="modifyform" method="post" action="<%=basePath%>admin/changePassword">
+			<form id="modifyform" class="" method="post" action="<%=basePath%>admin/changePassword">
 			
 				<input type="hidden" value='${admin.id }' id="id" name="id"/>
 				<div class="row pass">
 					<input type="password" id="password"  name="password" placeholder="原密码" />
 				</div>
 				<div class="row pass">
-					<input type="password" id="password1" required="required" pattern=" /^.{6,}$/"name="password1" placeholder="新密码" />
+					<input type="password" id="password1" name="password1" placeholder="新密码" />
 				</div>
 				<c:if test="${msg!=null}">
 				<span style="color:red;">${msg}</span><br>
@@ -51,7 +52,38 @@
 			</form>
 		</div>
 
+
 	</div>
+	<script src="<%=basePath%>js/jquery.min.js"></script>
+	<script src="<%=basePath%>js/matrix.login.js" type="text/javascript" charset="utf-8"></script>
+	<script src="<%=basePath%>js/jquery.validate.js"></script>
+	<script src="<%=basePath%>js/jquery.md5.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$("#modifyform").validate({
+				rules: {
+					password: {
+						required: true,
+						minlength: 6
+					},
+					password1: {
+						required: true,
+						minlength: 6
+					}
+				},
+				messages: {
+					password: {
+						required: "请输入密码",
+						minlength: jQuery.format("密码不能小于{0}个字符")
+					},
+					password1: {
+						required: "请输入密码",
+						minlength: jQuery.format("密码不能小于{0}个字符")
+					}
+				}
+			});
+		})
+	</script>
 
 	<!--==================================================================================================================-->
 	<jsp:include page="main_bottom.jsp"></jsp:include>

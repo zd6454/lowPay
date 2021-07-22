@@ -163,7 +163,7 @@
 						<div class="form-group">
 							<label class="col-sm-4 control-label">订单编号:</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" name="orderNum" style="margin-top: 8px;" />
+								<input type="text" class="form-control" readonly name="orderNum" style="margin-top: 8px;" />
 							</div>
 						</div>
 						<div class="form-group">
